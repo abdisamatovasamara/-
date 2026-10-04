@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ky">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SAMARA ACADEMY — أكاديمية سامارا</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;500;600&family=Amiri:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0a1428;
+            --em: #0b4a3c;
+            --cream: #f6efdf;
+            --champ: #e8d5a8;
+            --gold: #c9a24b;
+            --white: #fff
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: Inter, sans-serif;
+            color: var(--cream);
+            background: var(--navy);
+            overflow-x: hidden;
+            line-height: 1.6
+        }
+
+        body:before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: .07;
+            background: repeating-conic-gradient(from 0deg at 50% 50%, var(--gold) 0 5deg, transparent 5deg 45deg) 0 0/70px 70px, radial-gradient(circle at 20% 10%, var(--em), transparent 60%)
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700
+        }
+
+        .ar {
+            font-family: Amiri, serif;
+            direction: rtl
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(10, 20, 40, .82);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--gold)
+        }
+
+        .bar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 20px;
+            max-width: 1300px;
+            margin: auto
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            color: var(--champ);
+            line-height: 1.1;
+            cursor: pointer
+        }
+
+        .logo small {
+            display: block;
+            font-family: Amiri;
+            font-size: 15px;
+            color: var(--gold)
+        }
+
+        nav {
+            display: flex;
+            gap: 2px;
+            flex: 1;
+            flex-wrap: wrap
+        }
+
+        nav a {
+            padding: 6px 9px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            color: var(--cream)
+        }
+
+        nav a:hover,
+        nav a.on {
+            background: var(--gold);
+            color: var(--navy)
+        }
+
+        select,
+        input,
+        textarea,
+        button {
+            font: inherit
+        }
+
+        select {
+            background: var(--navy);
+            color: var(--cream);
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            padding: 5px
+        }
+
+        #burger {
+            display: none;
+            background: none;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            border-radius: 8px;
+            font-size: 20px;
+            padding: 2px 10px
+        }
+
+        .srch {
+            padding: 0 20px 10px;
+            max-width: 1300px;
+            margin: auto
+        }
+
+        .srch input {
+            width: 100%;
+            padding: 9px 16px;
+            border-radius: 25px;
+            border: 1px solid var(--gold);
+            background: rgba(255, 255, 255, .07);
+            color: var(--cream)
+        }
+
+        #res {
+            position: absolute;
+            left: 20px;
+            right: 20px;
+            max-width: 700px;
+            background: var(--navy);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            display: none;
+            max-height: 300px;
+            overflow: auto
+        }
+
+        #res div {
+            padding: 8px 14px;
+            cursor: pointer;
+            border-bottom: 1px solid #ffffff18
+        }
+
+        #res div:hover {
+            background: var(--em)
+        }
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 24px 18px 60px
+        }
+
+        .view {
+            display: none
+        }
+
+        .view.on {
+            display: block;
+            animation: in .5s
+        }
+
+        @keyframes in {
+            from {
+                opacity: 0;
+                transform: translateY(14px)
+            }
+        }
+
+        .hero {
+            min-height: 78vh;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            padding: 40px 20px;
+            background: radial-gradient(circle at 30% 20%, #0f6b57aa, transparent 55%), radial-gradient(circle at 80% 80%, #c9a24b33, transparent 50%), linear-gradient(160deg, #0a1428, #08261f);
+            border: 1px solid #c9a24b66
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 6vw, 64px);
+            color: var(--champ);
+            max-width: 850px;
+            line-height: 1.1
+        }
+
+        .hero .ar {
+            font-size: clamp(28px, 5vw, 48px);
+            color: var(--gold);
+            margin: 18px 0;
+            text-shadow: 0 0 30px #c9a24b88
+        }
+
+        .fl {
+            position: absolute;
+            font-family: Amiri;
+            color: var(--gold);
+            opacity: .18;
+            font-size: 60px;
+            animation: fl 9s ease-in-out infinite
+        }
+
+        @keyframes fl {
+            50% {
+                transform: translateY(-30px) rotate(8deg)
+            }
+        }
+
+        .dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 8px var(--gold);
+            animation: fl 6s infinite
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 26px;
+            border-radius: 30px;
+            border: 1px solid var(--gold);
+            background: none;
+            color: var(--champ);
+            cursor: pointer;
+            margin: 6px;
+            transition: .3s
+        }
+
+        .btn.gold,
+        .btn:hover {
+            background: linear-gradient(135deg, #e8d5a8, #c9a24b);
+            color: var(--navy);
+            box-shadow: 0 0 20px #c9a24b66
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 16px;
+            margin: 18px 0
+        }
+
+        .card {
+            background: rgba(255, 255, 255, .06);
+            backdrop-filter: blur(8px);
+            border: 1px solid #c9a24b66;
+            border-radius: 18px;
+            padding: 18px;
+            cursor: pointer;
+            transition: .3s;
+            box-shadow: 0 8px 30px #0006
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold)
+        }
+
+        .card .ar {
+            font-size: 30px;
+            color: var(--gold)
+        }
+
+        .card.done {
+            background: #0b4a3c99
+        }
+
+        h2 {
+            font-size: 34px;
+            color: var(--champ);
+            margin: 26px 0 6px
+        }
+
+        .sub {
+            opacity: .8;
+            margin-bottom: 10px
+        }
+
+        #modal {
+            position: fixed;
+            inset: 0;
+            background: #000b;
+            z-index: 100;
+            display: none;
+            place-items: center;
+            padding: 14px
+        }
+
+        #modal.on {
+            display: grid
+        }
+
+        .box {
+            background: linear-gradient(160deg, #0d1e3a, #0a2f27);
+            border: 1px solid var(--gold);
+            border-radius: 22px;
+            max-width: 720px;
+            width: 100%;
+            max-height: 92vh;
+            overflow: auto;
+            padding: 26px
+        }
+
+        .box .ex {
+            background: #ffffff10;
+            border-radius: 12px;
+            padding: 12px;
+            margin: 8px 0
+        }
+
+        .box .ex .ar {
+            font-size: 28px;
+            color: var(--champ)
+        }
+
+        .x {
+            float: right;
+            background: none;
+            border: 0;
+            color: var(--gold);
+            font-size: 26px;
+            cursor: pointer
+        }
+
+        input.t,
+        textarea {
+            width: 100%;
+            padding: 11px;
+            border-radius: 12px;
+            border: 1px solid var(--gold);
+            background: #ffffff12;
+            color: var(--cream);
+            margin: 8px 0
+        }
+
+        .ok {
+            color: #7be0a8
+        }
+
+        .no {
+            color: #ff9d9d
+        }
+
+        .bar2 {
+            height: 12px;
+            background: #ffffff18;
+            border-radius: 8px;
+            overflow: hidden
+        }
+
+        .bar2 i {
+            display: block;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--em), var(--gold));
+            transition: width 1.2s
+        }
+
+        .opt {
+            display: block;
+            width: 100%;
+            text-align: left;
+            margin: 6px 0
+        }
+
+        .img {
+            height: 150px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--em), var(--navy)) center/cover;
+            border: 1px solid var(--gold);
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 4px;
+            padding: 6px
+        }
+
+        .img button {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            border: 0;
+            background: #000a;
+            color: var(--champ);
+            cursor: pointer
+        }
+
+        footer {
+            border-top: 1px solid var(--gold);
+            text-align: center;
+            padding: 30px 16px;
+            background: #06101f
+        }
+
+        footer a {
+            margin: 0 8px;
+            color: var(--champ);
+            cursor: pointer;
+            font-size: 14px
+        }
+
+        .daily {
+            text-align: center;
+            padding: 30px
+        }
+
+        .daily .ar {
+            font-size: 64px;
+            color: var(--gold)
+        }
+
+        @media(max-width:1020px) {
+            #burger {
+                display: block;
+                margin-left: auto
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--navy);
+                padding: 12px;
+                flex-direction: column
+            }
+
+            nav.open {
+                display: flex
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                animation: none !important
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="bar">
+            <div class="logo" onclick="go('home')">SAMARA ACADEMY<small class="ar">أكاديمية سامارا</small></div>
+            <nav id="nav"></nav>
+            <select id="lang" onchange="setLang(this.value)">
+                <option value="ky">🌐 Кыргызча</option>
+                <option value="ru">Русский</option>
+                <option value="en">English</option>
+            </select>
+            <button id="burger" onclick="nav.classList.toggle('open')">☰</button>
+        </div>
+        <div class="srch"><input id="q" oninput="search(this.value)" data-ph="search">
+            <div id="res"></div>
+        </div>
+    </header>
+    <main id="main"></main>
+    <footer>
+        <h3>SAMARA ACADEMY</h3>
+        <div class="ar" style="font-size:22px;color:var(--gold)">أكاديمية سامارا</div>
+        <p data-t="foot" style="margin:8px"></p>
+        <div id="flinks"></div>
+        <div style="margin-top:10px"><a href="#">Telegram</a><a href="#">YouTube</a><a href="#">Instagram</a></div>
+    </footer>
+    <div id="modal" onclick="if(event.target==this)closeM()">
+        <div class="box" id="mbox"></div>
+    </div>
+
+    <script>
+        // ===== EDIT MENU TEXT HERE ===== (key: [Кыргызча, Русский, English])
+        const T = {
+            home: ["Башкы бет", "Главная", "Home"], sarf: ["Сарф", "Сарф", "Sarf"], nahw: ["Нахву", "Нахв", "Nahw"], lugat: ["Лугат", "Лексика", "Vocabulary"],
+            tajweed: ["Тажвид", "Таджвид", "Tajweed"], quran: ["Куран мисалдары", "Примеры из Корана", "Quran examples"], practice: ["Практика", "Практика", "Practice"],
+            test: ["Тест", "Тест", "Test"], help: ["Жардам", "Помощь", "Help"], progress: ["Менин прогрессим", "Мой прогресс", "My progress"],
+            h1: ["Араб тилин үйрөнүү — Куранды түшүнүүгө карай жол.", "Изучение арабского — путь к пониманию Корана.", "Learn Arabic — the way to understand the Qur'an."],
+            sub: ["Нөлдөн баштап араб тилин жөнөкөй тил менен үйрөн.", "Учите арабский с нуля простыми словами.", "Learn Arabic from zero in plain words."],
+            start: ["Окууну баштоо", "Начать обучение", "Start learning"], see: ["Сабактарды көрүү", "Смотреть уроки", "View lessons"],
+            search: ["Сабак, сөз же тема издеңиз...", "Урок, слово или тема...", "Search lesson, word or topic..."],
+            foot: ["Араб тилин үйрөнүү — Куранды түшүнүүгө карай кадам.", "Изучение арабского — шаг к пониманию Корана.", "Learn Arabic — a step toward understanding the Qur'an."],
+            daily: ["Бүгүнкү сөз", "Слово дня", "Word of the day"], newword: ["Жаңы сөз", "Новое слово", "New word"],
+            check: ["Өзүм текшерем", "Проверяю себя", "Check myself"], done: ["✅ Сабак бүттү", "✅ Урок пройден", "✅ Lesson done"],
+            prev: ["← Мурунку", "← Назад", "← Previous"], next: ["Кийинки →", "Далее →", "Next →"],
+            ok: ["✅ Туура!", "✅ Верно!", "✅ Correct!"], bad: ["❌ Кайра аракет кылып көр.", "❌ Попробуй ещё раз.", "❌ Try again."],
+            answer: ["Туура жооп", "Правильный ответ", "Correct answer"], checkbtn: ["Текшерүү", "Проверить", "Check"],
+            yours: ["Жообуңду жаз", "Напиши ответ", "Type your answer"], listen: ["🔊 Угуу", "🔊 Слушать", "🔊 Listen"],
+            ask: ["Суроо берүү", "Задать вопрос", "Ask a question"], send: ["Жөнөтүү", "Отправить", "Send"],
+            score: ["Сенин упайың", "Твой результат", "Your score"], again: ["Кайра башта", "Заново", "Restart"],
+            courses: ["Курстар", "Курсы", "Courses"], images: ["Менин сүрөттөрүм", "Мои картинки", "My images"], addimg: ["Сүрөт кошуу", "Добавить фото", "Add image"],
+            choose: ["Сүрөттү тандоо", "Выбрать", "Choose image"], del: ["Өчүрүү", "Удалить", "Delete"], change: ["Алмаштыруу", "Заменить", "Change"],
+            lessons: ["сабак", "уроков", "lessons"], none: ["Табылган жок", "Не найдено", "Nothing found"]
+        };
+        let L = localStorage.lang || "ky", li = () => ["ky", "ru", "en"].indexOf(L);
+        const t = k => T[k][li()];
+        const NAV = ["home", "sarf", "nahw", "lugat", "tajweed", "quran", "practice", "test", "help", "progress"];
+
+        // ===== EDIT LESSONS HERE =====
+        // Each lesson: [title, simple explanation (KG), explanation (RU), arabic example, translation, practice question, answer variants]
+        const COURSES = {
+            sarf: {
+                name: "صرف — САРФ", desc: "Сөздүн түзүлүшүн жана өзгөрүшүн үйрөнөбүз.", lessons: [
+                    ["1-сабак — Сарф деген эмне?", "Сарф — сөздүн түзүлүшүн жана өзгөрүшүн үйрөнгөн илим. Бир тамырдан көп сөз чыгат.", "Сарф — наука об изменении и образовании слов от одного корня.", "كَتَبَ ← كِتَابٌ ← كَاتِبٌ", "Жазды ← китеп ← жазуучу", "كتب тамырынан «жазуу» маанисиндеги сөздөр чыгат. Тамыр канча тамгадан турат?", ["3", "уч", "три", "үч"]],
+                    ["2-сабак — Мизан", "Мизан — өлчөм. Араб сөздөрүн ف-ع-ل тамгалары менен өлчөйбүз: ф=1-тамга, ъ=2-тамга, л=3-тамга.", "Мизан — «весы». Любое слово меряем корнем ف-ع-ل.", "كَتَبَ = فَعَلَ", "كتب мизан боюнча فعل", "كتب сөзүндө 1-тамга мизанда кайсы тамгага туура келет?", ["ф", "ف", "fa", "f", "фа"]],
+                    ["3-сабак — فَعَلَ", "فَعَلَ — өткөн чактагы жөнөкөй феъл: «кылды».", "فَعَلَ — глагол прошедшего времени: «сделал».", "فَعَلَ، كَتَبَ، ذَهَبَ", "кылды, жазды, барды", "ذَهَبَ деген эмне?", ["барды", "пошёл", "ушел", "ушёл", "went", "zahaba"]],
+                    ["4-сабак — فَاعِلٌ", "فَاعِلٌ — иштин аткаруучусу (кыймылдаган адам).", "فَاعِلٌ — тот, кто делает действие.", "كَاتِبٌ، عَالِمٌ", "жазуучу, окумуштуу", "كَاتِبٌ деген эмне?", ["жазуучу", "писатель", "writer", "katib", "катиб"]],
+                    ["5-сабак — مَفْعُولٌ", "مَفْعُولٌ — иш кимге/эмнеге жасалды.", "مَفْعُولٌ — то, над чем совершили действие.", "مَكْتُوبٌ", "жазылган", "مَكْتُوبٌ деген эмне?", ["жазылган", "написанное", "написано", "written", "maktub", "мактуб"]],
+                    ["6-сабак — Феъл", "Феъл — иш-аракет жана убакыт көрсөткөн сөз.", "Глагол — слово, обозначающее действие и время.", "يَكْتُبُ", "жазат", "يَكْتُبُ — кайсы чак?", ["азыркы", "настоящее", "present", "hazir", "азыр"]],
+                    ["7-сабак — Исм", "Исм — зат, адам же нерсенин аты.", "Исм — имя существительное.", "بَيْتٌ", "үй", "بَيْتٌ деген эмне?", ["уй", "үй", "дом", "house", "bayt", "бейт"]],
+                    ["8-сабак — Масдар", "Масдар — иштин аты: «жазуу», «окуу».", "Масдар — отглагольное имя: «письмо», «чтение».", "كِتَابَةٌ", "жазуу", "كِتَابَةٌ деген эмне?", ["жазуу", "письмо", "writing", "kitaba", "китаба"]],
+                    ["9-сабак — 14 формула", "Феъл 14 формада өзгөрөт: ал, алар, сен, мен, биз… Ар бир жактын өз формасы бар.", "Глагол изменяется по 14 формам (лица, число, род).", "كَتَبَ، كَتَبَتْ، كَتَبُوا", "ал жазды, ал(аял) жазды, алар жазды", "14 формула канча форма?", ["14", "он төрт", "четырнадцать", "fourteen"]],
+                    ["10-сабак — Практика", "Бардык өткөн сабактарды кайталайбыз.", "Повторяем всё пройденное.", "كَاتِبٌ — مَكْتُوبٌ — كِتَابٌ", "жазуучу — жазылган — китеп", "كِتَابٌ деген эмне?", ["китеп", "kitap", "книга", "book", "kitab"]]]
+            },
+            nahw: {
+                name: "نحو — НАХВУ", desc: "Сөздөрдүн сүйлөмдө кандай байланышарын үйрөнөбүз.", lessons: [
+                    ["1-сабак — Нахву деген эмне?", "Нахву — сөздөр сүйлөмдө кантип байланыша турганын үйрөнгөн илим.", "Нахв — наука о связи слов в предложении.", "ذَهَبَ الْوَلَدُ", "Бала барды", "Нахву эмнени үйрөтөт?", ["сүйлөм", "предложение", "sentence", "суйлом"]],
+                    ["2-сабак — Сүйлөм деген эмне?", "Сүйлөм — толук ой билдирген сөздөр тобу.", "Предложение — группа слов с законченной мыслью.", "الْوَلَدُ مُجْتَهِدٌ", "Бала эмгекчил", "Сүйлөм эмне билдирет?", ["ой", "мысль", "thought", "идея"]],
+                    ["3-сабак — Исм", "Исм — зат атооч. Мисалы: كِتَابٌ.", "Исм — имя. Например: كِتَابٌ.", "كِتَابٌ، قَلَمٌ", "китеп, калем", "قَلَمٌ деген эмне?", ["калем", "ручка", "pen", "qalam", "каләм"]],
+                    ["4-сабак — Феъл", "Феъл — иш-аракет: كَتَبَ.", "Феъл — глагол.", "كَتَبَ، قَرَأَ", "жазды, окуду", "قَرَأَ деген эмне?", ["окуду", "читал", "прочитал", "read", "qaraa"]],
+                    ["5-сабак — Харф", "Харф — байланыштыргыч сөз: فِي، مِنْ، إِلَى.", "Харф — частица: فِي، مِنْ، إِلَى.", "فِي الْبَيْتِ", "үйдө", "فِي деген эмне?", ["ичинде", "в", "in", "fi", "фи", "-да"]],
+                    ["6-сабак — Мубтада", "Мубтада — сүйлөмдүн башындагы «ким/эмне».", "Мубтада — подлежащее номинального предложения.", "الْكِتَابُ جَدِيدٌ", "Китеп жаңы", "Мубтада кайсы сөз: الْكِتَابُ جَدِيدٌ?", ["китеп", "الكتاب", "книга", "kitab", "book"]],
+                    ["7-сабак — Хабар", "Хабар — мубтада жөнүндө айтылган маалымат.", "Хабар — сказуемое: что сказано о мубтада.", "الْكِتَابُ جَدِيدٌ", "Китеп жаңы", "Хабар кайсы сөз?", ["жаңы", "новый", "new", "jadid", "жадид", "جديد"]],
+                    ["8-сабак — Фаил", "Фаил — ишти аткарган. Ал дайыма марфуъ.", "Фаил — тот, кто совершил действие.", "كَتَبَ الطَّالِبُ", "Студент жазды", "Фаил кайсы сөз?", ["студент", "талиб", "ученик", "student", "толиб", "الطالب"]],
+                    ["9-сабак — Мафъул", "Мафъул — иш кимге/эмнеге багытталды. Ал мансуб.", "Мафъул — объект действия.", "قَرَأَ الْوَلَدُ الْكِتَابَ", "Бала китепти окуду", "Мафъул кайсы сөз?", ["китеп", "книга", "book", "kitab", "الكتاب"]],
+                    ["10-сабак — Жөнөкөй сүйлөмдөр", "Исмий сүйлөм — исмден башталат, феълий сүйлөм — феълден.", "Именное начинается с имени, глагольное — с глагола.", "ذَهَبَ مُحَمَّدٌ إِلَى الْمَدْرَسَةِ", "Мухаммад мектепке барды", "ذَهَبَ… кандай сүйлөм?", ["феълий", "глагольное", "verbal", "feli", "глагольное"]],
+                    ["11-сабак — Практика", "Кайталоо: исм, феъл, харф.", "Повторение: исм, феъл, харф.", "كِتَابٌ — كَتَبَ — فِي", "китеп — жазды — ичинде", "كَتَبَ — исм, феъл же харф?", ["феъл", "глагол", "verb", "fail"]]]
+            },
+            tajweed: {
+                name: "تجويد — ТАЖВИД", desc: "Куранды туура окуунун эрежелери.", lessons: [
+                    ["1-сабак — Тажвид деген эмне?", "Тажвид — Куранды ар тамганын ордунан, туура окуу.", "Таджвид — правильное чтение Корана.", "الْحَمْدُ لِلَّهِ", "Мактоо Аллахка", "Тажвид эмнеге керек?", ["туура окуу", "правильно читать", "correct reading"]],
+                    ["2-сабак — Махраж", "Махраж — тамга чыккан жер: тамак, тил, эриндер.", "Махридж — место выхода буквы.", "ب (эриндер)", "", "ب тамгасы кайсы жерден чыгат?", ["эриндер", "губы", "lips", "эрин"]],
+                    ["3-сабак — Сыфат", "Сыфат — тамганын сапаты: жоон, ичке, күчтүү.", "Сыфат — качество звука.", "ص (жоон)", "", "ص жоон же ичке?", ["жоон", "толстая", "тяжелая", "heavy"]],
+                    ["4-сабак — Нун сакина", "Нун сакина — оозу жок ن. 4 эреже: изхар, идгам, ихфа, икълаб.", "Нун сакина — ن без огласовки.", "مِنْ بَعْدِ", "", "Нун сакинанын канча эрежеси бар?", ["4", "төрт", "четыре", "four"]],
+                    ["5-сабак — Танвин", "Танвин — сөздүн аягындагы «ун, ан, ин».", "Танвин — нунация: ун, ан, ин.", "كِتَابٌ", "", "Танвин канча түр?", ["3", "уч", "три", "үч"]],
+                    ["6-сабак — Мим сакина", "Мим сакина — оозу жок م.", "Мим сакина — م без огласовки.", "هُمْ بِهِ", "", "مْ — бул кайсы тамга?", ["мим", "м", "mim", "мим сакина"]],
+                    ["7-сабак — Мадд", "Мадд — үндүүнү узартуу.", "Мадд — удлинение.", "قَالَ", "Айтты", "Мадд эмне кылат?", ["узартат", "удлиняет", "lengthens", "узартуу"]],
+                    ["8-сабак — Калкала", "Калкала — ق ط ب ج د тамгаларын титиретип окуу.", "Калкала — вибрация букв ق ط ب ج د.", "أَحَدٌ", "", "Калкала тамгалары канча?", ["5", "беш", "пять", "five"]],
+                    ["9-сабак — Идгам", "Идгам — нун сакина менен кийинки тамга биригет.", "Идгам — слияние.", "مَنْ يَقُولُ", "", "Идгам эмне?", ["кошулуу", "слияние", "merge", "биригүү"]],
+                    ["10-сабак — Ихфа", "Ихфа — ныкты жашыруу, мурун аркылуу окуу.", "Ихфа — скрытое произношение.", "مِنْ قَبْلِ", "", "Ихфа эмне?", ["жашыруу", "скрытие", "hiding", "скрытое"]],
+                    ["11-сабак — Изхар", "Изхар — ачык, так окуу.", "Изхар — чёткое произношение.", "مِنْ أَحَدٍ", "", "Изхар эмне?", ["ачык", "чётко", "clear", "так", "ясно"]]]
+            }
+        };
+
+        // ===== EDIT VOCABULARY HERE =====
+        // [arabic, transliteration, Kyrgyz, Russian, example (arabic), example meaning, category]
+        const VOCAB = [
+            ["أُمٌّ", "umm", "эне", "мама", "أُمِّي طَيِّبَةٌ", "Энем жакшы", "Үй-бүлө"],
+            ["أَبٌ", "ab", "ата", "отец", "أَبِي هُنَا", "Атам бул жерде", "Үй-бүлө"],
+            ["بَيْتٌ", "bayt", "үй", "дом", "الْبَيْتُ كَبِيرٌ", "Үй чоң", "Үй"],
+            ["بَابٌ", "bab", "эшик", "дверь", "افْتَحِ الْبَابَ", "Эшикти ач", "Үй"],
+            ["كِتَابٌ", "kitab", "китеп", "книга", "كِتَابٌ جَدِيدٌ", "Жаңы китеп", "Мектеп"],
+            ["قَلَمٌ", "qalam", "калем", "ручка", "هَذَا قَلَمٌ", "Бул калем", "Мектеп"],
+            ["يَدٌ", "yad", "кол", "рука", "يَدِي نَظِيفَةٌ", "Колум таза", "Дене мүчөлөрү"],
+            ["خُبْزٌ", "khubz", "нан", "хлеб", "أُحِبُّ الْخُبْزَ", "Нанды жакшы көрөм", "Тамак-аш"],
+            ["مَاءٌ", "ma'", "суу", "вода", "مَاءٌ بَارِدٌ", "Муздак суу", "Тамак-аш"],
+            ["شُكْرًا", "shukran", "рахмат", "спасибо", "شُكْرًا جَزِيلًا", "Чоң рахмат", "Күнүмдүк сөздөр"],
+            ["السَّلَامُ عَلَيْكُمْ", "assalamu alaykum", "саламатсызбы", "мир вам", "السَّلَامُ عَلَيْكُمْ", "Ассалому алейкум", "Саламдашуу"],
+            ["كَبِيرٌ", "kabir", "чоң", "большой", "بَيْتٌ كَبِيرٌ", "Чоң үй", "Сын атоочтор"],
+            ["وَاحِدٌ", "wahid", "бир", "один", "وَاحِدٌ، اثْنَانِ", "Бир, эки", "Сандар"],
+            ["يَوْمٌ", "yawm", "күн", "день", "يَوْمٌ جَمِيلٌ", "Кооз күн", "Убакыт"],
+            ["رَحْمَةٌ", "rahma", "ырайым", "милость", "رَحْمَةُ اللَّهِ", "Аллахтын ырайымы", "Куранда көп кездешкен сөздөр"]];
+
+        // ===== EDIT QUESTIONS HERE =====
+        // Practice: [question, [accepted answers in any script], explanation]
+        const PRACTICE = [
+            ["كتاب деген эмне?", ["китеп", "kitap", "kitab", "книга", "book", "كتاب"], "كِتَابٌ — китеп."],
+            ["بيت деген эмне?", ["үй", "уй", "дом", "bayt", "house", "beyt"], "بَيْتٌ — үй."],
+            ["قلم деген эмне?", ["калем", "ручка", "qalam", "pen", "kalem"], "قَلَمٌ — калем."],
+            ["ماء деген эмне?", ["суу", "су", "вода", "water", "ma", "maa"], "مَاءٌ — суу."],
+            ["أم деген эмне?", ["эне", "мама", "umm", "mother", "ana"], "أُمٌّ — эне."]];
+        // Quiz: [question, [4 options], correct index]
+        const QUIZ = [
+            ["كِتَابٌ деген эмне?", ["Үй", "Китеп", "Калем", "Эшик"], 1],
+            ["بَيْتٌ деген эмне?", ["Суу", "Нан", "Үй", "Эне"], 2],
+            ["قَلَمٌ деген эмне?", ["Калем", "Эшик", "Ата", "Күн"], 0],
+            ["مَاءٌ деген эмне?", ["Нан", "Суу", "Китеп", "Кол"], 1],
+            ["أَبٌ деген эмне?", ["Эне", "Үй", "Ата", "Чоң"], 2],
+            ["يَوْمٌ деген эмне?", ["Түн", "Күн", "Бир", "Эшик"], 1],
+            ["شُكْرًا деген эмне?", ["Салам", "Рахмат", "Кечиресиз", "Жакшы"], 1],
+            ["كَبِيرٌ деген эмне?", ["Чоң", "Кичине", "Жаңы", "Кооз"], 0]];
+
+        // ===== EDIT QURAN EXAMPLES HERE =====
+        const QURAN = [
+            { ar: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", tr: "Мээримдүү, Ырайымдуу Аллахтын атынан (баштайм).", words: "بِسْمِ — атынан · اللَّهِ — Аллах · الرَّحْمَٰنِ — Мээримдүү · الرَّحِيمِ — Ырайымдуу", sarf: "الرَّحْمَٰنِ жана الرَّحِيمِ — رحم тамырынан.", nahw: "بِ — харф; اسم — мажрур (бир тамга менен).", vocab: "رَحْمَةٌ — ырайым" },
+            { ar: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", tr: "Бардык мактоо — аалам Раббиси Аллахка.", words: "الْحَمْدُ — мактоо · لِلَّهِ — Аллахка · رَبِّ — Рабби · الْعَالَمِينَ — аалам", sarf: "الْحَمْدُ — масдар (حمد).", nahw: "الْحَمْدُ — мубтада; لِلَّهِ — хабар.", vocab: "رَبٌّ — Рабби" },
+            { ar: "اقْرَأْ بِاسْمِ رَبِّكَ", tr: "Раббиңдин аты менен оку.", words: "اقْرَأْ — оку · بِاسْمِ — ат менен · رَبِّكَ — Раббиң", sarf: "اقْرَأْ — буйрук формасы (قرأ).", nahw: "رَبِّكَ — мудаф, كَ — мудаф илейх.", vocab: "قَرَأَ — окуду" }];
+
+        // ===== EDIT HELP / FAQ HERE =====
+        const FAQ = [
+            ["Мен жаңы баштадым", "Башта Сарф 1-сабактан баштап, күнүнө 1 сабак окуй бер."],
+            ["Сарф деген эмне?", "Сарф — араб тилиндеги сөздүн түзүлүшүн жана өзгөрүшүн үйрөнгөн илим."],
+            ["Нахву деген эмне?", "Нахву — сөздөр сүйлөмдө кандай байланышарын үйрөнгөн илим."],
+            ["Фаил деген эмне?", "Фаил — ишти аткарган. Мисалы: كَتَبَ الطَّالِبُ — «жазган» студент (الطَّالِبُ) фаил."],
+            ["Араб сөздөрүн окуй албай жатам", "Тамгаларды бирден үйрөн, кыска үндүүлөрдү (фатха, касра, замма) көңүл бургуй."],
+            ["Тажвид боюнча суроо", "Тажвид — Куранды туура окуу. Махраж менен сыфатты баштан үйрөн."],
+            ["Тесттин жообун түшүнгөн жокмун", "Жооп менен кошо түшүндүрмө көрсөтүлөт. Кайра аракет кыл."]];
+
+        // ===== EDIT IMAGES HERE ===== (replace the CSS gradient in .img with your own url(...) or use the upload area)
+        const DEFAULT_IMGS = ["", "", ""];
+
+        // ===== NORMALIZATION / SYNONYMS =====
+        const CYR = { а: "a", б: "b", в: "v", г: "g", д: "d", е: "e", ё: "e", ж: "j", з: "z", и: "i", й: "i", к: "k", л: "l", м: "m", н: "n", о: "o", п: "p", р: "r", с: "s", т: "t", у: "u", ф: "f", х: "h", ц: "s", ч: "c", ш: "s", щ: "s", ы: "i", э: "e", ю: "u", я: "a", ү: "u", ө: "o", ң: "n", ъ: "", ь: "", ә: "a", ғ: "g", қ: "k" };
+        function norm(s) {
+            s = (s || "").toLowerCase().replace(/[\u064B-\u065F\u0670\u0640]/g, "").replace(/[أإآ]/g, "ا").replace(/ى/g, "ي").replace(/ة/g, "ه");
+            s = s.replace(/[.,!?;:()«»"'’\-–—_]/g, " ").replace(/\s+/g, " ").trim();
+            s = [...s].map(c => CYR[c] !== undefined ? CYR[c] : c).join("");
+            s = s.replace(/q/g, "k").replace(/c/g, "k").replace(/y/g, "i").replace(/w/g, "v").replace(/(.)\1+/g, "$1").replace(/[ou]/g, "u").replace(/[ei]/g, "i");
+            return s;
+        }
+        const isRight = (inp, list) => { const n = norm(inp); return n && list.some(a => norm(a) === n) };
+
+        // ===== STATE =====
+        let prog = JSON.parse(localStorage.prog || "{}"); let imgs = JSON.parse(localStorage.imgs || "[]");
+        const save = () => { localStorage.prog = JSON.stringify(prog); localStorage.imgs = JSON.stringify(imgs) };
+        const el = id => document.getElementById(id);
+        const nav = el("nav");
+        function buildNav() {
+            nav.innerHTML = NAV.map(k => `<a data-k="${k}" onclick="go('${k}')">${t(k)}</a>`).join("");
+            el("flinks").innerHTML = ["sarf", "nahw", "lugat", "tajweed", "quran", "help"].map(k => `<a onclick="go('${k}')">${t(k)}</a>`).join("");
+            document.querySelectorAll("[data-t]").forEach(e => e.textContent = t(e.dataset.t)); el("q").placeholder = t("search");
+        }
+        function setLang(v) { L = v; localStorage.lang = v; buildNav(); go(cur) }
+        let cur = "home";
+        function go(k) {
+            cur = k; nav.classList.remove("open"); el("res").style.display = "none";
+            nav.querySelectorAll("a").forEach(a => a.classList.toggle("on", a.dataset.k == k));
+            el("main").innerHTML = ({ home, sarf: () => course("sarf"), nahw: () => course("nahw"), tajweed: () => course("tajweed"), lugat, quran, practice, test, help, progress })[k]();
+            if (k == "progress") setTimeout(() => document.querySelectorAll(".bar2 i").forEach(b => b.style.width = b.dataset.w + "%"), 50);
+            window.scrollTo(0, 0); if (k == "test") startQuiz();
+        }
+        const speak = w => { try { const u = new SpeechSynthesisUtterance(w); u.lang = "ar-SA"; speechSynthesis.speak(u) } catch (e) { } };
+
+        // ===== HOME =====
+        let dw = 0;
+        function home() {
+            const fl = ["ك", "ت", "ب", "ع", "ل", "م"].map((c, i) => `<span class="fl" style="left:${8 + i * 16}%;top:${15 + (i % 3) * 28}%;animation-delay:${i}s">${c}</span>`).join("");
+            const dots = Array.from({ length: 18 }, (_, i) => `<i class="dot" style="left:${(i * 37) % 100}%;top:${(i * 53) % 100}%;animation-delay:${i * .4}s"></i>`).join("");
+            const w = VOCAB[dw % VOCAB.length];
+            return `<section class="hero">${fl}${dots}<div style="position:relative"><h1>${t("h1")}</h1><div class="ar">تَعَلَّمِ الْعَرَبِيَّةَ بِسُهُولَةٍ</div><p class="sub">${t("sub")}</p>
+ <button class="btn gold" onclick="openL('sarf',0)">${t("start")}</button><button class="btn" onclick="document.getElementById('crs').scrollIntoView()">${t("see")}</button></div></section>
+ <h2 id="crs">${t("courses")}</h2><div class="grid">${["sarf", "nahw", "tajweed"].map(k => `<div class="card" onclick="go('${k}')"><div class="ar">${COURSES[k].name.split(" — ")[0]}</div><h3>${COURSES[k].name.split(" — ")[1]}</h3><p>${COURSES[k].desc}</p><small>${COURSES[k].lessons.length} ${t("lessons")}</small></div>`).join("")}
+ <div class="card" onclick="go('lugat')"><div class="ar">اللغة</div><h3>${t("lugat")}</h3><p>${VOCAB.length}+</p></div></div>
+ <div class="card daily" onclick="speak('${w[0]}')"><h3>${t("daily")}</h3><div class="ar">${w[0]}</div><h3>${w[2]} · ${w[3]}</h3><p class="ar">${w[4]}</p><p>${w[5]}</p><button class="btn" onclick="event.stopPropagation();dw++;go('home')">${t("newword")}</button></div>
+ <h2>${t("images")}</h2>${imgArea()}`;
+        }
+        // ===== IMAGES =====
+        function imgArea() {
+            const cards = imgs.map((s, i) => `<div class="img" style="background-image:url(${s})"><button onclick="pick(${i})">${t("change")}</button><button onclick="delImg(${i})">${t("del")}</button></div>`).join("");
+            return `<div class="grid">${cards}<div class="img"><button onclick="pick(-1)">${t("addimg")}</button></div></div>
+ <input type="file" id="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" style="display:none" onchange="onFile(this)"><div id="prev"></div>`;
+        }
+        let pi = -1;
+        const pick = i => { pi = i; el("file").click() };
+        function onFile(inp) {
+            const f = inp.files[0]; if (!f || !/image\/(jpeg|png|webp)/.test(f.type)) return;
+            const r = new FileReader(); r.onload = e => {
+                el("prev").innerHTML = `<div class="card"><img src="${e.target.result}" style="max-width:100%;border-radius:12px"><br><button class="btn gold" id="okimg">${t("choose")}</button></div>`;
+                el("okimg").onclick = () => { pi < 0 ? imgs.push(e.target.result) : imgs[pi] = e.target.result; try { save() } catch (x) { } go("home") }
+            }; r.readAsDataURL(f)
+        }
+        const delImg = i => { imgs.splice(i, 1); save(); go("home") };
+
+        // ===== COURSES / LESSONS =====
+        function course(k) {
+            const c = COURSES[k];
+            return `<h2><span class="ar">${c.name.split(" — ")[0]}</span> ${c.name.split(" — ")[1]}</h2><p class="sub">${c.desc}</p>
+ <div class="grid">${c.lessons.map((l, i) => `<div class="card ${prog[k + i] ? "done" : ""}" onclick="openL('${k}',${i})"><h3>${l[0]}</h3>${prog[k + i] ? "<small>✅</small>" : ""}</div>`).join("")}</div>`
+        }
+        function openL(k, i) {
+            const c = COURSES[k], l = c.lessons[i];
+            el("mbox").innerHTML = `<button class="x" onclick="closeM()">×</button><h2>${l[0]}</h2><p>${l[1]}</p><p style="opacity:.8">🇷🇺 ${l[2]}</p>
+ <div class="ex"><div class="ar">${l[3]}</div><small>${l[4]}</small> <button class="btn" onclick="speak('${l[3].split(/[ ،←—]/)[0]}')">${t("listen")}</button></div>
+ <h3>${t("check")}</h3><p>${l[5]}</p><input class="t" id="ans" placeholder="${t("yours")}"><button class="btn gold" onclick="chk('${k}',${i})">${t("checkbtn")}</button><div id="fb"></div>
+ <div style="display:flex;justify-content:space-between;margin-top:14px"><button class="btn" onclick="${i > 0 ? `openL('${k}',${i - 1})` : "closeM()"}">${t("prev")}</button><button class="btn" onclick="${i < c.lessons.length - 1 ? `openL('${k}',${i + 1})` : "closeM()"}">${t("next")}</button></div>`;
+            el("modal").classList.add("on")
+        }
+        function chk(k, i) {
+            const l = COURSES[k].lessons[i], ok = isRight(el("ans").value, l[6]);
+            el("fb").innerHTML = ok ? `<p class="ok">${t("ok")}</p><p>${t("done")}</p>` : `<p class="no">${t("bad")}</p><p>${t("answer")}: ${l[6][0]}</p>`;
+            if (ok) { prog[k + i] = 1; save() }
+        }
+        const closeM = () => { el("modal").classList.remove("on"); go(cur) };
+
+        // ===== VOCAB =====
+        function lugat() {
+            const cats = [...new Set(VOCAB.map(v => v[6]))];
+            return `<h2><span class="ar">اللغة</span> ${t("lugat")}</h2>` + cats.map(c => `<h3 style="margin-top:18px">${c}</h3><div class="grid">${VOCAB.filter(v => v[6] == c).map(v => `<div class="card"><div class="ar">${v[0]}</div><b>${v[1]}</b><p>${v[2]} · ${v[3]}</p><p class="ar" style="font-size:20px">${v[4]}</p><small>${v[5]}</small><br><button class="btn" onclick="speak('${v[0]}')">${t("listen")}</button></div>`).join("")}</div>`).join("")
+        }
+        // ===== QURAN =====
+        function quran() { return `<h2>${t("quran")}</h2>` + QURAN.map(q => `<div class="card" style="cursor:default;margin:14px 0"><div class="ar" style="font-size:34px;text-align:center">${q.ar}</div><p style="text-align:center"><i>${q.tr}</i></p><p><b>Сөз-сөз:</b> ${q.words}</p><p><b>Сарф:</b> ${q.sarf}</p><p><b>Нахву:</b> ${q.nahw}</p><p><b>Лугат:</b> ${q.vocab}</p></div>`).join("") }
+        // ===== PRACTICE =====
+        function practice() { return `<h2>${t("practice")}</h2>` + PRACTICE.map((p, i) => `<div class="card" style="cursor:default;margin:12px 0"><h3>${p[0]}</h3><input class="t" id="p${i}" placeholder="${t("yours")}" onkeydown="if(event.key=='Enter')pc(${i})"><button class="btn gold" onclick="pc(${i})">${t("checkbtn")}</button><div id="pf${i}"></div></div>`).join("") }
+        function pc(i) {
+            const p = PRACTICE[i], ok = isRight(el("p" + i).value, p[1]);
+            el("pf" + i).innerHTML = ok ? `<p class="ok">${t("ok")}</p><p>${p[2]}</p>` : `<p class="no">${t("bad")}</p><p>${t("answer")}: ${p[1][0]} — ${p[2]}</p>`
+        }
+        // ===== QUIZ =====
+        let qi = 0, qs = 0;
+        function startQuiz() { qi = 0; qs = 0; showQ() }
+        function showQ() {
+            const b = el("qbox");
+            if (qi >= QUIZ.length) {
+                const p = Math.round(qs / QUIZ.length * 100); prog.test = Math.max(prog.test || 0, p); save();
+                b.innerHTML = `<h2>${t("score")}: ${qs} / ${QUIZ.length}</h2><h3>${p}%</h3><button class="btn gold" onclick="startQuiz()">${t("again")}</button>`; return
+            }
+            const q = QUIZ[qi]; b.innerHTML = `<small>${qi + 1}/${QUIZ.length}</small><h3 style="font-size:28px">${q[0]}</h3>` + q[1].map((o, j) => `<button class="btn opt" onclick="ans(${j})">${"ABCD"[j]}) ${o}</button>`).join("") + `<div id="qf"></div>`
+        }
+        function ans(j) {
+            const q = QUIZ[qi], ok = j == q[2]; if (ok) qs++;
+            el("qf").innerHTML = ok ? `<p class="ok">МашаАллах! Туура жооп 🌸</p>` : `<p class="no">Кайра аракет кылып көр 🌱 — ${t("answer")}: ${q[1][q[2]]}</p>`;
+            document.querySelectorAll(".opt").forEach(b => b.disabled = true); setTimeout(() => { qi++; showQ() }, 1300)
+        }
+        function test() { return `<h2>${t("test")}</h2><div class="card" style="cursor:default" id="qbox"></div>` }
+        // ===== HELP =====
+        function help() {
+            return `<h2>${t("help")}</h2><div class="card" style="cursor:default"><h3>${t("ask")}</h3><textarea id="hq" rows="2" placeholder="Фаил деген эмне?"></textarea><button class="btn gold" onclick="hAsk()">${t("send")}</button><div id="ha"></div></div>
+ <div class="grid">${FAQ.map(f => `<div class="card" onclick="this.querySelector('p').style.display='block'"><h3>${f[0]}</h3><p style="display:none">${f[1]}</p></div>`).join("")}</div>`
+        }
+        function hAsk() {
+            const n = norm(el("hq").value); let best = null, sc = 0;
+            FAQ.forEach(f => { const w = n.split(" ").filter(x => x.length > 2); const s = w.filter(x => norm(f[0] + " " + f[1]).includes(x)).length; if (s > sc) { sc = s; best = f } });
+            el("ha").innerHTML = best ? `<p><b>${best[0]}</b><br>${best[1]}</p>` : `<p>${t("none")}</p>`
+        }
+        // ===== PROGRESS =====
+        function progress() {
+            const pc = k => Math.round(COURSES[k].lessons.filter((_, i) => prog[k + i]).length / COURSES[k].lessons.length * 100);
+            const rows = [["sarf", pc("sarf")], ["nahw", pc("nahw")], ["tajweed", pc("tajweed")], ["test", prog.test || 0]];
+            return `<h2>${t("progress")}</h2>` + rows.map(r => `<div class="card" style="cursor:default;margin:10px 0"><b>${t(r[0])}: ${r[1]}%</b><div class="bar2"><i data-w="${r[1]}"></i></div></div>`).join("")
+        }
+        // ===== SEARCH =====
+        function search(v) {
+            const n = norm(v), r = el("res"); if (n.length < 2) { r.style.display = "none"; return }
+            const hits = [];
+            for (const k in COURSES) COURSES[k].lessons.forEach((l, i) => { if (norm(l.slice(0, 5).join(" ")).includes(n)) hits.push([`${t(k)}: ${l[0]}`, () => openL(k, i)]) });
+            VOCAB.forEach(w => { if (norm(w.join(" ")).includes(n)) hits.push([`${w[0]} — ${w[2]}`, () => go("lugat")]) });
+            QURAN.forEach(q => { if (norm(q.ar + q.tr + q.words).includes(n)) hits.push([q.ar, () => go("quran")]) });
+            window._h = hits; r.innerHTML = hits.length ? hits.slice(0, 12).map((h, i) => `<div onclick="_h[${i}][1]()">${h[0]}</div>`).join("") : `<div>${t("none")}</div>`; r.style.display = "block"
+        }
+        el("lang").value = L; buildNav(); go("home");
+    </script>
+</body>
+
+</html>
