@@ -1,629 +1,1506 @@
-```html
 <!DOCTYPE html>
 <html lang="ky">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Араб тили — Сарф сабагы</title>
+<title>SAMARA ARABIC ACADEMY</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f7f3ec;
-            color: #29251f;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        header {
-            background: #1d1a17;
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
+<style>
 
-        header h1 {
-            margin: 0 0 10px;
-            font-size: 32px;
-        }
+:root{
+    --bg:#080807;
+    --bg2:#10100e;
+    --gold:#d8b36a;
+    --gold2:#f2d99a;
+    --cream:#f4ead7;
+    --muted:#aaa397;
+    --glass:rgba(255,255,255,.055);
+    --border:rgba(220,184,105,.22);
+}
 
-        header p {
-            margin: 0;
-            opacity: 0.8;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        .container {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        .lesson {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-        }
+body{
+    background:
+        radial-gradient(circle at 20% 10%,rgba(214,174,91,.09),transparent 25%),
+        radial-gradient(circle at 80% 30%,rgba(255,255,255,.035),transparent 25%),
+        linear-gradient(135deg,#060606,#11110f 50%,#070706);
+    color:var(--cream);
+    font-family:Inter,sans-serif;
+    overflow-x:hidden;
+}
 
-        .lesson h2 {
-            margin-top: 0;
-        }
+/* ================= BACKGROUND ================= */
 
-        .arabic {
-            font-size: 38px;
-            direction: rtl;
-            text-align: center;
-            margin: 15px 0;
-            font-family: "Amiri", "Times New Roman", serif;
-        }
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.25;
+    background-image:
+        radial-gradient(circle,rgba(255,220,150,.8) 1px,transparent 1px);
+    background-size:80px 80px;
+    animation:stars 25s linear infinite;
+    z-index:-1;
+}
 
-        .meaning {
-            text-align: center;
-            font-size: 18px;
-        }
+@keyframes stars{
+    from{transform:translateY(0)}
+    to{transform:translateY(-80px)}
+}
 
-        .speak {
-            border: none;
-            background: #1d1a17;
-            color: white;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            cursor: pointer;
-            font-size: 20px;
-            margin: 5px;
-        }
+.light{
+    position:fixed;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(218,181,103,.12),transparent 70%);
+    pointer-events:none;
+    filter:blur(20px);
+    z-index:-1;
+}
 
-        .speak:hover {
-            transform: scale(1.08);
-        }
+.light.one{
+    top:5%;
+    left:-120px;
+}
 
-        .info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-            margin-top: 20px;
-        }
+.light.two{
+    right:-120px;
+    top:45%;
+}
 
-        .info-card {
-            background: #f4efe7;
-            padding: 15px;
-            border-radius: 12px;
-        }
+/* ================= NAVBAR ================= */
 
-        .info-card strong {
-            display: block;
-            margin-bottom: 5px;
-        }
+nav{
+    position:fixed;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+    width:min(1200px,94%);
+    padding:14px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border:1px solid var(--border);
+    border-radius:22px;
+    background:rgba(8,8,7,.72);
+    backdrop-filter:blur(20px);
+    z-index:1000;
+    box-shadow:0 20px 70px rgba(0,0,0,.45);
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: center;
-        }
+.logo-symbol{
+    width:40px;
+    height:40px;
+    border:1px solid var(--gold);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--gold2);
+    font-family:"Noto Naskh Arabic";
+    font-size:22px;
+}
 
-        th {
-            background: #1d1a17;
-            color: white;
-        }
+.logo-text{
+    font-family:"Cormorant Garamond";
+    font-size:24px;
+    letter-spacing:2px;
+}
 
-        .table-arabic {
-            font-size: 28px;
-            direction: rtl;
-        }
+.nav-links{
+    display:flex;
+    gap:25px;
+}
 
-        .example {
-            background: #faf7f1;
-            padding: 18px;
-            border-left: 4px solid #1d1a17;
-            margin-top: 15px;
-            border-radius: 8px;
-        }
+.nav-links a{
+    text-decoration:none;
+    color:#c9c2b4;
+    font-size:13px;
+    transition:.3s;
+}
 
-        .test-question {
-            margin: 20px 0;
-            padding: 15px;
-            background: #f8f8f8;
-            border-radius: 12px;
-        }
+.nav-links a:hover{
+    color:var(--gold2);
+}
 
-        button.answer {
-            padding: 10px 15px;
-            margin: 5px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            background: white;
-            cursor: pointer;
-        }
+.lang{
+    background:transparent;
+    border:1px solid var(--border);
+    color:var(--cream);
+    border-radius:10px;
+    padding:8px 12px;
+}
 
-        button.answer:hover {
-            background: #eee;
-        }
+/* ================= HERO ================= */
 
-        #result {
-            margin-top: 15px;
-            font-weight: bold;
-        }
+.hero{
+    min-height:100vh;
+    padding:160px 7% 80px;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    align-items:center;
+    gap:50px;
+    position:relative;
+}
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: #1d1a17;
-            color: white;
-            margin-top: 40px;
-        }
+.hero::after{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border:1px solid rgba(216,179,106,.08);
+    border-radius:50%;
+    right:-150px;
+    top:15%;
+}
 
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 25px;
-            }
+.kicker{
+    color:var(--gold);
+    letter-spacing:5px;
+    text-transform:uppercase;
+    font-size:12px;
+    margin-bottom:22px;
+}
 
-            .lesson {
-                padding: 20px;
-            }
+.hero h1{
+    font-family:"Cormorant Garamond";
+    font-size:clamp(60px,8vw,120px);
+    line-height:.8;
+    font-weight:500;
+    letter-spacing:-4px;
+}
 
-            .arabic {
-                font-size: 32px;
-            }
+.hero h1 span{
+    color:var(--gold2);
+}
 
-            table {
-                font-size: 13px;
-            }
-        }
-    </style>
+.hero-arabic{
+    font-family:"Noto Naskh Arabic";
+    font-size:clamp(40px,5vw,75px);
+    color:#e9d3a0;
+    margin:30px 0;
+}
+
+.hero p{
+    max-width:580px;
+    color:var(--muted);
+    line-height:1.8;
+    font-size:15px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+    margin-top:35px;
+}
+
+.btn{
+    padding:15px 25px;
+    border-radius:13px;
+    text-decoration:none;
+    transition:.35s;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.btn-primary{
+    background:linear-gradient(135deg,#d6b067,#f0d696);
+    color:#17130b;
+    box-shadow:0 15px 45px rgba(216,179,106,.18);
+}
+
+.btn-primary:hover{
+    transform:translateY(-4px);
+    box-shadow:0 20px 60px rgba(216,179,106,.3);
+}
+
+.btn-outline{
+    color:var(--cream);
+    border:1px solid var(--border);
+}
+
+.btn-outline:hover{
+    border-color:var(--gold);
+}
+
+/* ================= HERO CARD ================= */
+
+.hero-card{
+    height:580px;
+    border-radius:40px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--border);
+    background:
+        linear-gradient(to bottom,transparent 30%,rgba(0,0,0,.8)),
+        url("https://images.pexels.com/photos/6281986/pexels-photo-6281986.jpeg") center/cover;
+    box-shadow:
+        0 40px 100px rgba(0,0,0,.65),
+        inset 0 0 80px rgba(0,0,0,.3);
+}
+
+.hero-card-content{
+    position:absolute;
+    bottom:35px;
+    left:35px;
+    right:35px;
+}
+
+.hero-card-content small{
+    color:var(--gold2);
+    letter-spacing:3px;
+}
+
+.hero-card-content h2{
+    font-family:"Cormorant Garamond";
+    font-size:45px;
+    margin-top:8px;
+}
+
+/* ================= SECTIONS ================= */
+
+section{
+    padding:110px 7%;
+}
+
+.section-head{
+    text-align:center;
+    max-width:800px;
+    margin:0 auto 65px;
+}
+
+.section-head .arabic{
+    font-family:"Noto Naskh Arabic";
+    color:var(--gold2);
+    font-size:45px;
+}
+
+.section-head h2{
+    font-family:"Cormorant Garamond";
+    font-size:55px;
+    font-weight:500;
+}
+
+.section-head p{
+    color:var(--muted);
+    line-height:1.8;
+    margin-top:15px;
+}
+
+/* ================= FEATURE CARDS ================= */
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.feature{
+    padding:30px;
+    min-height:200px;
+    background:var(--glass);
+    border:1px solid var(--border);
+    border-radius:24px;
+    backdrop-filter:blur(15px);
+    transition:.4s;
+}
+
+.feature:hover{
+    transform:translateY(-8px);
+    border-color:rgba(242,217,154,.55);
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
+}
+
+.feature-icon{
+    font-size:30px;
+    margin-bottom:25px;
+}
+
+.feature h3{
+    font-family:"Cormorant Garamond";
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.feature p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* ================= SARF ================= */
+
+.sarf{
+    position:relative;
+}
+
+.sarf-box{
+    max-width:1150px;
+    margin:auto;
+    padding:35px;
+    border-radius:35px;
+    border:1px solid var(--border);
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.015));
+    backdrop-filter:blur(20px);
+}
+
+.sarf-intro{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.root{
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    padding:25px 45px;
+    border-radius:25px;
+    border:1px solid rgba(216,179,106,.3);
+    background:rgba(216,179,106,.04);
+}
+
+.root small{
+    color:var(--gold);
+    letter-spacing:2px;
+}
+
+.root strong{
+    font-family:"Noto Naskh Arabic";
+    font-size:55px;
+    color:#f3d99b;
+}
+
+.root span{
+    color:var(--muted);
+}
+
+/* ================= SIGAH GRID ================= */
+
+.sigah-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.sigah-card{
+    min-height:330px;
+    position:relative;
+    overflow:hidden;
+    border-radius:28px;
+    border:1px solid rgba(216,179,106,.2);
+    background:#0d0d0b;
+    transition:.45s;
+}
+
+.sigah-card:hover{
+    transform:translateY(-8px) scale(1.01);
+    border-color:rgba(242,217,154,.6);
+    box-shadow:0 30px 70px rgba(0,0,0,.5);
+}
+
+.sigah-photo{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    opacity:.43;
+    transition:.5s;
+}
+
+.sigah-card:hover .sigah-photo{
+    transform:scale(1.07);
+    opacity:.55;
+}
+
+.sigah-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to top,
+        rgba(4,4,3,.98) 0%,
+        rgba(4,4,3,.72) 45%,
+        rgba(4,4,3,.1) 100%
+    );
+}
+
+.sigah-content{
+    position:absolute;
+    bottom:25px;
+    left:25px;
+    right:25px;
+    z-index:2;
+}
+
+.number{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:3px;
+}
+
+.sigah-arabic{
+    font-family:"Noto Naskh Arabic";
+    font-size:40px;
+    color:#f6dfaa;
+    margin:5px 0;
+}
+
+.translit{
+    color:white;
+    font-size:16px;
+}
+
+.meaning{
+    color:#c2bbaf;
+    margin-top:5px;
+}
+
+.person{
+    display:inline-block;
+    margin-top:12px;
+    padding:6px 10px;
+    border-radius:20px;
+    background:rgba(216,179,106,.1);
+    border:1px solid rgba(216,179,106,.2);
+    color:var(--gold2);
+    font-size:11px;
+}
+
+/* ================= PRACTICE ================= */
+
+.practice-box{
+    max-width:850px;
+    margin:auto;
+    padding:45px;
+    border-radius:30px;
+    background:linear-gradient(145deg,rgba(216,179,106,.08),rgba(255,255,255,.025));
+    border:1px solid var(--border);
+    text-align:center;
+}
+
+.practice-arabic{
+    font-family:"Noto Naskh Arabic";
+    font-size:60px;
+    color:var(--gold2);
+    margin:20px;
+}
+
+.practice-input{
+    width:100%;
+    padding:17px 20px;
+    border-radius:15px;
+    border:1px solid var(--border);
+    background:#080807;
+    color:white;
+    outline:none;
+    font-size:16px;
+    text-align:center;
+}
+
+.practice-input:focus{
+    border-color:var(--gold);
+}
+
+.practice-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:15px;
+}
+
+.result{
+    margin-top:20px;
+    min-height:25px;
+    color:var(--gold2);
+}
+
+/* ================= SUBJECTS ================= */
+
+.subject-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.subject{
+    min-height:300px;
+    padding:30px;
+    border:1px solid var(--border);
+    border-radius:28px;
+    background:
+        radial-gradient(circle at 80% 20%,rgba(216,179,106,.1),transparent 35%),
+        var(--glass);
+    transition:.4s;
+    position:relative;
+    overflow:hidden;
+}
+
+.subject::after{
+    content:"✦";
+    position:absolute;
+    right:25px;
+    bottom:15px;
+    font-size:80px;
+    color:rgba(216,179,106,.04);
+}
+
+.subject:hover{
+    transform:translateY(-8px);
+    border-color:rgba(242,217,154,.55);
+}
+
+.subject-number{
+    color:var(--gold);
+    font-size:12px;
+}
+
+.subject h3{
+    font-family:"Cormorant Garamond";
+    font-size:35px;
+    margin:30px 0 10px;
+}
+
+.subject .arabic{
+    font-family:"Noto Naskh Arabic";
+    font-size:38px;
+    color:var(--gold2);
+}
+
+.subject p{
+    color:var(--muted);
+    line-height:1.7;
+    font-size:13px;
+}
+
+/* ================= QURAN ================= */
+
+.quran{
+    max-width:1050px;
+    margin:auto;
+    padding:70px 50px;
+    text-align:center;
+    border:1px solid var(--border);
+    border-radius:35px;
+    background:
+        radial-gradient(circle at center,rgba(216,179,106,.09),transparent 60%);
+}
+
+.quran-symbol{
+    font-family:"Noto Naskh Arabic";
+    font-size:60px;
+    color:var(--gold2);
+}
+
+.quran h2{
+    font-family:"Cormorant Garamond";
+    font-size:50px;
+    margin:10px 0;
+}
+
+.quran p{
+    color:var(--muted);
+    line-height:1.9;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    padding:70px 7% 30px;
+    border-top:1px solid var(--border);
+    text-align:center;
+}
+
+.footer-logo{
+    font-family:"Cormorant Garamond";
+    font-size:35px;
+    letter-spacing:4px;
+}
+
+.footer-arabic{
+    font-family:"Noto Naskh Arabic";
+    color:var(--gold);
+    font-size:25px;
+    margin:10px;
+}
+
+footer p{
+    color:#77736c;
+    font-size:12px;
+}
+
+/* ================= REVEAL ================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+        padding-top:130px;
+    }
+
+    .hero-card{
+        height:480px;
+    }
+
+    .feature-grid,
+    .subject-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    nav{
+        padding:10px 14px;
+    }
+
+    .logo-text{
+        font-size:19px;
+    }
+
+    .hero{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .hero h1{
+        font-size:65px;
+    }
+
+    .hero-card{
+        height:430px;
+    }
+
+    section{
+        padding:75px 5%;
+    }
+
+    .section-head h2{
+        font-size:43px;
+    }
+
+    .feature-grid,
+    .subject-grid,
+    .sigah-grid{
+        grid-template-columns:1fr;
+    }
+
+    .sarf-box{
+        padding:15px;
+    }
+
+    .practice-box{
+        padding:25px 18px;
+    }
+
+    .practice-arabic{
+        font-size:48px;
+    }
+
+    .quran{
+        padding:45px 20px;
+    }
+
+}
+
+/* ================= CUSTOM SCROLLBAR ================= */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#050505;
+}
+
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(var(--gold),#80652e);
+    border-radius:20px;
+}
+
+</style>
 </head>
 
 <body>
 
-<header>
-    <h1>🌙 Араб тилин жөнөкөй үйрөнөбүз</h1>
-    <p>Сарф • Нахв • Лугат • Арабча окуу</p>
-</header>
+<div class="light one"></div>
+<div class="light two"></div>
 
-<div class="container">
+<!-- ================= NAV ================= -->
 
-    <!-- 1-САБАК -->
-    <section class="lesson">
+<nav>
 
-        <h2>📖 1-сабак: Сарф деген эмне?</h2>
+<div class="logo">
+    <div class="logo-symbol">ن</div>
+    <div class="logo-text">SAMARA</div>
+</div>
 
-        <p>
-            <strong>Сарф</strong> — араб тилиндеги сөздөрдүн формасы кандай
-            өзгөрөрүн үйрөтүүчү илим.
-        </p>
+<div class="nav-links">
+    <a href="#home">Башкы бет</a>
+    <a href="#sarf">Сарф</a>
+    <a href="#practice">Практика</a>
+    <a href="#subjects">Сабактар</a>
+    <a href="#quran">Куран</a>
+</div>
 
-        <p>
-            Мисалы, бир эле тамырдан ар кандай сөздөр жана формалар пайда болот.
-            Ошондуктан сарфты үйрөнгөндө сөздүн өзгөрүшүн түшүнөбүз.
-        </p>
+<select class="lang">
+    <option>KG</option>
+    <option>RU</option>
+    <option>EN</option>
+</select>
 
-        <div class="example">
+</nav>
 
-            <div class="arabic">
-                كَتَبَ
-                <button class="speak" onclick="speakArabic('كَتَبَ')">🔊</button>
-            </div>
 
-            <div class="meaning">
-                <strong>كَتَبَ</strong> — жазды
-            </div>
+<!-- ================= HERO ================= -->
 
-        </div>
+<header class="hero" id="home">
 
-    </section>
+<div class="reveal">
 
-
-    <!-- СӨЗДҮН ТАЛДООСУ -->
-    <section class="lesson">
-
-        <h2>🔎 Сөздү талдайбыз</h2>
-
-        <div class="arabic">
-            كَتَبَ
-            <button class="speak" onclick="speakArabic('كَتَبَ')">🔊</button>
-        </div>
-
-        <div class="info">
-
-            <div class="info-card">
-                <strong>Мааниси</strong>
-                Жазды
-            </div>
-
-            <div class="info-card">
-                <strong>Жагы</strong>
-                3-жак
-            </div>
-
-            <div class="info-card">
-                <strong>Жынысы</strong>
-                Эркек
-            </div>
-
-            <div class="info-card">
-                <strong>Саны</strong>
-                Жекелик
-            </div>
-
-            <div class="info-card">
-                <strong>Чагы</strong>
-                Өткөн чак
-            </div>
-
-            <div class="info-card">
-                <strong>Түрү</strong>
-                Этиш
-            </div>
-
-            <div class="info-card">
-                <strong>Тамыры</strong>
-                ك ت ب
-            </div>
-
-            <div class="info-card">
-                <strong>Формуласы</strong>
-                فَعَلَ
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- 14 ФОРМА -->
-    <section class="lesson">
-
-        <h2>📚 Өткөн чак — 14 форма</h2>
-
-        <p>
-            Араб тилинде этиш адамга, жыныска жана санга жараша өзгөрөт.
-            Төмөндө <strong>كَتَبَ</strong> — «жазуу» этишинин 14 формасы көрсөтүлдү.
-        </p>
-
-        <table>
-
-            <thead>
-                <tr>
-                    <th>№</th>
-                    <th>Арабча</th>
-                    <th>Жагы</th>
-                    <th>Жынысы</th>
-                    <th>Саны</th>
-                    <th>Кыргызча</th>
-                    <th>🔊</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                <tr>
-                    <td>1</td>
-                    <td class="table-arabic">هُوَ كَتَبَ</td>
-                    <td>3-жак</td>
-                    <td>Эркек</td>
-                    <td>Жекелик</td>
-                    <td>Ал жазды</td>
-                    <td>
-                        <button class="speak" onclick="speakArabic('هُوَ كَتَبَ')">🔊</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>2</td>
-                    <td class="table-arabic">هُمَا كَتَبَا</td>
-                    <td>3-жак</td>
-                    <td>Эркек</td>
-                    <td>Экилик</td>
-                    <td>Экөө жазды</td>
-                    <td>
-                        <button class="speak" onclick="speakArabic('هُمَا كَتَبَا')">🔊</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>3</td>
-                    <td class="table-arabic">هُمْ كَتَبُوا</td>
-                    <td>3-жак</td>
-                    <td>Эркек</td>
-                    <td>Көптүк</td>
-                    <td>Алар жазышты</td>
-                    <td>
-                        <button class="speak" onclick="speakArabic('هُمْ كَتَبُوا')">🔊</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>4</td>
-                    <td class="table-arabic">هِيَ كَتَبَتْ</td>
-                    <td>3-жак</td>
-                    <td>Аял</td>
-                    <td>Жекелик</td>
-                    <td>Ал аял жазды</td>
-                    <td>
-                        <button class="speak" onclick="speakArabic('هِيَ كَتَبَتْ')">🔊</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>5</td>
-                    <td class="table-arabic">هُمَا كَتَبَتَا</td>
-                    <td>3-жак</td>
-                    <td>Аял</td>
-                    <td>Экилик</td>
-                    <td>Экөө аял жазды</td>
-                    <td>
-                        <button class="speak" onclick="speakArabic('هُمَا كَتَبَتَا')">🔊</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>6</td>
-                    <td class="table-arabic">هُنَّ كَتَبْنَ</td>
-                    <td>3-жак</td>
-                    <td>Аял</td>
-                    <td>Көптүк</td>
-                    <td>Алар аялдар жазышты</td>
-                    <td>
-                        <button class="speak" onclick="speakArabic('هُنَّ كَتَبْنَ')">🔊</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>7</td>
-                    <td class="table-arabic">أَنْتَ كَتَبْتَ</td>
-                    <td>2-жак</td>
-                    <td>Эркек</td>
-                    <td>Жекелик</td>
-                    <td>Сен жаздың</td>
-                    <td>
-                        <button class="speak" onclick="speakArabic('أَنْتَ كَتَبْتَ')">🔊</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>8</td>
-                    <td class="table-arabic">أَنْتُمَا كَتَبْتُمَا</td>
-                    <td>2-жак</td>
-                    <td>Эркек</td>
-                    <td>Экилик</td>
-                    <td>Силер экөөңөр жаздыңар</td>
-                    <td>
-                        <button class="speak" onclick="speakArabic('أَنْتُمَا كَتَبْتُمَا')">🔊</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>9</td>
-                    <td class="table-arabic">أَنْتُمْ كَتَبْتُمْ</td>
-                    <td>2-жак</td>
-                    <td>Эркек</td>
-                    <td>Көптүк</td>
-                    <td>Силер жаздыңар</td>
-                    <td>
-                        <button class="speak" onclick="speakArabic('أَنْتُمْ كَتَبْتُمْ')">🔊</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>10</td>
-                    <td class="table-arabic">أَنْتِ كَتَبْتِ</td>
-                    <td>2-жак</td>
-                    <td>Аял</td>
-                    <td>Жекелик</td>
-                    <td>Сен аял жаздың</td>
-                    <td>
-                        <button class="speak" onclick="speakArabic('أَنْتِ كَتَبْتِ')">🔊</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>11</td>
-                    <td class="table-arabic">أَنْتُمَا كَتَبْتُمَا</td>
-                    <td>2-жак</td>
-                    <td>Аял</td>
-                    <td>Экилик</td>
-                    <td>Силер экөөңөр жаздыңар</td>
-                    <td>
-                        <button class="speak" onclick="speakArabic('أَنْتُمَا كَتَبْتُمَا')">🔊</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>12</td>
-                    <td class="table-arabic">أَنْتُنَّ كَتَبْتُنَّ</td>
-                    <td>2-жак</td>
-                    <td>Аял</td>
-                    <td>Көптүк</td>
-                    <td>Силер аялдар жаздыңар</td>
-                    <td>
-                        <button class="speak" onclick="speakArabic('أَنْتُنَّ كَتَبْتُنَّ')">🔊</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>13</td>
-                    <td class="table-arabic">أَنَا كَتَبْتُ</td>
-                    <td>1-жак</td>
-                    <td>Эркек/аял</td>
-                    <td>Жекелик</td>
-                    <td>Мен жаздым</td>
-                    <td>
-                        <button class="speak" onclick="speakArabic('أَنَا كَتَبْتُ')">🔊</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>14</td>
-                    <td class="table-arabic">نَحْنُ كَتَبْنَا</td>
-                    <td>1-жак</td>
-                    <td>Эркек/аял</td>
-                    <td>Көптүк</td>
-                    <td>Биз жаздык</td>
-                    <td>
-                        <button class="speak" onclick="speakArabic('نَحْنُ كَتَبْنَا')">🔊</button>
-                    </td>
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </section>
-
-
-    <!-- ЭРЕЖЕ -->
-    <section class="lesson">
-
-        <h2>💡 Эмнени эстеп калуу керек?</h2>
-
-        <div class="example">
-
-            <p>
-                <strong>1-жак</strong> — сүйлөп жаткан адам:
-                أنا — мен, نحن — биз
-            </p>
-
-            <p>
-                <strong>2-жак</strong> — сүйлөшүп жаткан адам:
-                أنتَ, أنتِ, أنتم...
-            </p>
-
-            <p>
-                <strong>3-жак</strong> — башка адам жөнүндө:
-                هو, هي, هم...
-            </p>
-
-            <p>
-                <strong>Жекелик</strong> — бир адам.
-            </p>
-
-            <p>
-                <strong>Экилик</strong> — эки адам.
-            </p>
-
-            <p>
-                <strong>Көптүк</strong> — үч же андан көп.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- ТЕСТ -->
-    <section class="lesson">
-
-        <h2>🧪 Өзүңдү текшер</h2>
-
-        <div class="test-question">
-
-            <p>
-                <strong>1. كَتَبَ кайсы жак?</strong>
-            </p>
-
-            <button class="answer" onclick="checkAnswer(this, false)">
-                1-жак
-            </button>
-
-            <button class="answer" onclick="checkAnswer(this, false)">
-                2-жак
-            </button>
-
-            <button class="answer" onclick="checkAnswer(this, true)">
-                3-жак
-            </button>
-
-            <button class="answer" onclick="checkAnswer(this, false)">
-                4-жак
-            </button>
-
-        </div>
-
-        <div class="test-question">
-
-            <p>
-                <strong>2. هُمْ كَتَبُوا эмнени билдирет?</strong>
-            </p>
-
-            <button class="answer" onclick="checkAnswer(this, true)">
-                Алар жазышты
-            </button>
-
-            <button class="answer" onclick="checkAnswer(this, false)">
-                Мен жаздым
-            </button>
-
-            <button class="answer" onclick="checkAnswer(this, false)">
-                Сен жаздың
-            </button>
-
-        </div>
-
-        <div id="result"></div>
-
-    </section>
+<div class="kicker">
+SAMARA ARABIC ACADEMY
+</div>
+
+<h1>
+Араб тилин
+<br>
+<span>оңой үйрөн.</span>
+</h1>
+
+<div class="hero-arabic">
+تَعَلَّمِ الْعَرَبِيَّةَ
+</div>
+
+<p>
+Араб тилин жөнөкөй, түшүнүктүү жана заманбап ыкма менен үйрөн.
+Сарф, Нахв, Лугат, Тажвид жана Куран мисалдары —
+баары бир жерде.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#sarf" class="btn btn-primary">
+Сабакты баштоо →
+</a>
+
+<a href="#subjects" class="btn btn-outline">
+Бөлүмдөрдү көрүү
+</a>
+
+</div>
 
 </div>
 
 
+<div class="hero-card reveal">
+
+<div class="hero-card-content">
+
+<small>العِلْمُ نُورٌ</small>
+
+<h2>
+Илим — нур.
+</h2>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section>
+
+<div class="section-head reveal">
+
+<div class="arabic">
+أَهْلًا وَسَهْلًا
+</div>
+
+<h2>Бул жерде эмнени үйрөнөсүң?</h2>
+
+<p>
+Араб тилин башынан баштап үйрөнүп жаткан адамга да,
+тереңдетип окуп жаткан адамга да ылайыктуу.
+</p>
+
+</div>
+
+
+<div class="feature-grid">
+
+<div class="feature reveal">
+<div class="feature-icon">📖</div>
+<h3>Сарф</h3>
+<p>
+Сөздүн өзгөрүшүн жана 14 сыганы эң жөнөкөй тил менен үйрөн.
+</p>
+</div>
+
+<div class="feature reveal">
+<div class="feature-icon">✍️</div>
+<h3>Практика</h3>
+<p>
+Өзүң жооп жаз. Сайт жоопту текшерип, туура вариантын көрсөтөт.
+</p>
+</div>
+
+<div class="feature reveal">
+<div class="feature-icon">🔊</div>
+<h3>Аудио</h3>
+<p>
+Арабча сөздөрдү баскыч аркылуу угуп, айтылышын кайтала.
+</p>
+</div>
+
+<div class="feature reveal">
+<div class="feature-icon">🕌</div>
+<h3>Куран</h3>
+<p>
+Араб тилин Курандагы мисалдар менен байланышта үйрөн.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SARF ================= -->
+
+<section id="sarf" class="sarf">
+
+<div class="section-head reveal">
+
+<div class="arabic">
+الصَّرْفُ
+</div>
+
+<h2>Сарф — 14 сыга</h2>
+
+<p>
+Сарф сөздүн формасы кандай өзгөрөрүн үйрөтөт.
+Бул жерде 14 сыганы <b>كَتَبَ</b> — «жазды» деген сөз менен үйрөнөбүз.
+</p>
+
+</div>
+
+
+<div class="sarf-box reveal">
+
+<div class="sarf-intro">
+
+<div class="root">
+
+<small>МИСАЛ СӨЗ</small>
+
+<strong>كَتَبَ</strong>
+
+<span>катаба — жазды</span>
+
+</div>
+
+</div>
+
+
+<div class="sigah-grid" id="sigahGrid"></div>
+
+</div>
+
+</section>
+
+
+<!-- ================= PRACTICE ================= -->
+
+<section id="practice">
+
+<div class="section-head reveal">
+
+<div class="arabic">
+تَدْرِيبٌ
+</div>
+
+<h2>Өзүңдү текшер</h2>
+
+<p>
+Арабча сөздү карап, анын окулушун кириллица же латын тамгасы менен жаз.
+</p>
+
+</div>
+
+
+<div class="practice-box reveal">
+
+<div id="practiceNumber">
+01
+</div>
+
+<div class="practice-arabic" id="practiceArabic">
+هُوَ كَتَبَ
+</div>
+
+<button class="btn btn-outline" onclick="speakPractice()">
+🔊 Угуу
+</button>
+
+<br><br>
+
+<input
+    class="practice-input"
+    id="answer"
+    placeholder="Мисалы: хува катаба / huva kataba"
+>
+
+<div class="practice-buttons">
+
+<button class="btn btn-primary" onclick="checkAnswer()">
+Текшерүү
+</button>
+
+<button class="btn btn-outline" onclick="nextQuestion()">
+Кийинки →
+</button>
+
+</div>
+
+<div class="result" id="result"></div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SUBJECTS ================= -->
+
+<section id="subjects">
+
+<div class="section-head reveal">
+
+<div class="arabic">
+عُلُومُ الْعَرَبِيَّةِ
+</div>
+
+<h2>Араб тилинин дүйнөсү</h2>
+
+<p>
+Бир гана сөз жаттабайбыз.
+Тилди системалуу түшүнөбүз.
+</p>
+
+</div>
+
+
+<div class="subject-grid">
+
+<div class="subject reveal">
+
+<div class="subject-number">01 / SARF</div>
+
+<div class="arabic">الصَّرْفُ</div>
+
+<h3>Сарф</h3>
+
+<p>
+Сөздөрдүн түзүлүшү, өзгөрүшү,
+чактары жана 14 сыга.
+</p>
+
+</div>
+
+
+<div class="subject reveal">
+
+<div class="subject-number">02 / NAHW</div>
+
+<div class="arabic">النَّحْوُ</div>
+
+<h3>Нахв</h3>
+
+<p>
+Сүйлөмдүн түзүлүшү,
+сөздөрдүн байланышы жана грамматика.
+</p>
+
+</div>
+
+
+<div class="subject reveal">
+
+<div class="subject-number">03 / LUGAT</div>
+
+<div class="arabic">اللُّغَةُ</div>
+
+<h3>Лугат</h3>
+
+<p>
+Күнүмдүк сөздөр,
+маанилер жана мисалдар.
+</p>
+
+</div>
+
+
+<div class="subject reveal">
+
+<div class="subject-number">04 / TAJWID</div>
+
+<div class="arabic">التَّجْوِيدُ</div>
+
+<h3>Тажвид</h3>
+
+<p>
+Куранды туура окуу,
+махраж жана сыпаттар.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= QURAN ================= -->
+
+<section id="quran">
+
+<div class="quran reveal">
+
+<div class="quran-symbol">
+اقْرَأْ
+</div>
+
+<h2>Куран менен байланышта үйрөн</h2>
+
+<p>
+Араб тилин үйрөнүүнүн эң сонун жолдорунун бири —
+Курандагы сөздөрдү түшүнүүгө аракет кылуу.
+Бул бөлүмдө арабча сөздөр, мааниси жана Курандан мисалдар
+жай жана түшүнүктүү түрдө берилет.
+</p>
+
+<br>
+
+<div class="hero-arabic">
+رَبِّ زِدْنِي عِلْمًا
+</div>
+
+<p>
+«Раббим, илимимди арттыр».
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
 <footer>
-    Араб тилин түшүнүп үйрөнөбүз 🤍
+
+<div class="footer-logo">
+SAMARA ARABIC ACADEMY
+</div>
+
+<div class="footer-arabic">
+العِلْمُ نُورٌ
+</div>
+
+<p>
+Араб тилин үйрөн. Түшүн. Практика кыл. Өс.
+</p>
+
+<br>
+
+<p>
+© 2026 Samara Arabic Academy
+</p>
+
 </footer>
 
 
 <script>
 
-    // Арабча сөздү браузер өзү окуйт
-    function speakArabic(text) {
+/* ================= 14 SIGAH ================= */
 
-        if (!("speechSynthesis" in window)) {
-            alert("Бул браузерде үн менен окуу функциясы жок.");
-            return;
-        }
+const sigah = [
 
-        window.speechSynthesis.cancel();
+{
+n:"01",
+arabic:"هُوَ كَتَبَ",
+translit:"хува катаба",
+meaning:"Ал жазды",
+person:"1 эркек",
+photo:"https://images.pexels.com/photos/7594089/pexels-photo-7594089.jpeg"
+},
 
-        const speech = new SpeechSynthesisUtterance(text);
+{
+n:"02",
+arabic:"هُمَا كَتَبَا",
+translit:"хума катаба",
+meaning:"Экөө жазды",
+person:"2 эркек",
+photo:"https://images.pexels.com/photos/5554294/pexels-photo-5554294.jpeg"
+},
 
-        speech.lang = "ar-SA";
-        speech.rate = 0.75;
-        speech.pitch = 1;
+{
+n:"03",
+arabic:"هُمْ كَتَبُوا",
+translit:"хум катабу",
+meaning:"Алар жазышты",
+person:"Көп эркек",
+photo:"https://images.pexels.com/photos/5553925/pexels-photo-5553925.jpeg"
+},
 
-        window.speechSynthesis.speak(speech);
+{
+n:"04",
+arabic:"هِيَ كَتَبَتْ",
+translit:"хия катабат",
+meaning:"Ал жазды",
+person:"1 аял",
+photo:"https://images.pexels.com/photos/9218644/pexels-photo-9218644.jpeg"
+},
+
+{
+n:"05",
+arabic:"هُمَا كَتَبَتَا",
+translit:"хума катабата",
+meaning:"Экөө жазды",
+person:"2 аял",
+photo:"https://images.pexels.com/photos/8640084/pexels-photo-8640084.jpeg"
+},
+
+{
+n:"06",
+arabic:"هُنَّ كَتَبْنَ",
+translit:"хунна катабна",
+meaning:"Алар жазышты",
+person:"Көп аял",
+photo:"https://images.pexels.com/photos/8457296/pexels-photo-8457296.jpeg"
+},
+
+{
+n:"07",
+arabic:"أَنْتَ كَتَبْتَ",
+translit:"анта катабта",
+meaning:"Сен жаздың",
+person:"1 эркекке",
+photo:"https://images.pexels.com/photos/7594201/pexels-photo-7594201.jpeg"
+},
+
+{
+n:"08",
+arabic:"أَنْتُمَا كَتَبْتُمَا",
+translit:"антума катабтума",
+meaning:"Экөөңөр жаздыңар",
+person:"2 адам",
+photo:"https://images.pexels.com/photos/8199667/pexels-photo-8199667.jpeg"
+},
+
+{
+n:"09",
+arabic:"أَنْتُمْ كَتَبْتُمْ",
+translit:"антум катабтум",
+meaning:"Силер жаздыңар",
+person:"Көп эркек",
+photo:"https://images.pexels.com/photos/5212346/pexels-photo-5212346.jpeg"
+},
+
+{
+n:"10",
+arabic:"أَنْتِ كَتَبْتِ",
+translit:"анти катабти",
+meaning:"Сен жаздың",
+person:"1 аялга",
+photo:"https://images.pexels.com/photos/6700542/pexels-photo-6700542.jpeg"
+},
+
+{
+n:"11",
+arabic:"أَنْتُمَا كَتَبْتُمَا",
+translit:"антума катабтума",
+meaning:"Экөөңөр жаздыңар",
+person:"2 аял",
+photo:"https://images.pexels.com/photos/8640084/pexels-photo-8640084.jpeg"
+},
+
+{
+n:"12",
+arabic:"أَنْتُنَّ كَتَبْتُنَّ",
+translit:"антунна катабтунна",
+meaning:"Силер жаздыңар",
+person:"Көп аял",
+photo:"https://images.pexels.com/photos/8938288/pexels-photo-8938288.jpeg"
+},
+
+{
+n:"13",
+arabic:"أَنَا كَتَبْتُ",
+translit:"ана катабту",
+meaning:"Мен жаздым",
+person:"Мен",
+photo:"https://images.pexels.com/photos/6282016/pexels-photo-6282016.jpeg"
+},
+
+{
+n:"14",
+arabic:"نَحْنُ كَتَبْنَا",
+translit:"нахну катабна",
+meaning:"Биз жаздык",
+person:"Биз",
+photo:"https://images.pexels.com/photos/5965863/pexels-photo-5965863.jpeg"
+}
+
+];
+
+
+/* ================= CREATE CARDS ================= */
+
+const grid = document.getElementById("sigahGrid");
+
+sigah.forEach(item => {
+
+    grid.innerHTML += `
+
+    <div class="sigah-card reveal">
+
+        <div
+            class="sigah-photo"
+            style="background-image:url('${item.photo}')">
+        </div>
+
+        <div class="sigah-overlay"></div>
+
+        <div class="sigah-content">
+
+            <div class="number">
+                ${item.n} / 14
+            </div>
+
+            <div class="sigah-arabic">
+                ${item.arabic}
+            </div>
+
+            <div class="translit">
+                ${item.translit}
+            </div>
+
+            <div class="meaning">
+                ${item.meaning}
+            </div>
+
+            <div class="person">
+                ${item.person}
+            </div>
+
+            <br><br>
+
+            <button
+                class="btn btn-outline"
+                onclick="speak('${item.arabic}')">
+
+                🔊 Угуу
+
+            </button>
+
+        </div>
+
+    </div>
+
+    `;
+
+});
+
+
+/* ================= AUDIO ================= */
+
+function speak(text){
+
+    if(!window.speechSynthesis){
+        alert("Бул браузер аудиону колдобойт.");
+        return;
     }
 
+    speechSynthesis.cancel();
 
-    // Тестти текшерүү
-    function checkAnswer(button, correct) {
+    const voice = new SpeechSynthesisUtterance(text);
 
-        const result = document.getElementById("result");
+    voice.lang = "ar-SA";
+    voice.rate = 0.75;
+    voice.pitch = 1;
 
-        if (correct) {
+    speechSynthesis.speak(voice);
+}
 
-            result.textContent = "✅ Туура жооп! Абдан жакшы.";
 
-        } else {
+/* ================= PRACTICE ================= */
 
-            result.textContent =
-                "❌ Туура эмес. Кайра ойлонуп көр: бул жерде 3-жак колдонулган.";
+let current = 0;
 
-        }
+function showQuestion(){
+
+    const item = sigah[current];
+
+    document.getElementById("practiceNumber").innerText =
+        item.n + " / 14";
+
+    document.getElementById("practiceArabic").innerText =
+        item.arabic;
+
+    document.getElementById("answer").value = "";
+
+    document.getElementById("result").innerText = "";
+
+}
+
+function normalize(text){
+
+    return text
+        .toLowerCase()
+        .trim()
+        .replace(/[ā]/g,"a")
+        .replace(/[ū]/g,"u")
+        .replace(/[ī]/g,"i")
+        .replace(/[ъь]/g,"")
+        .replace(/\s+/g," ");
+
+}
+
+function checkAnswer(){
+
+    const input =
+        normalize(document.getElementById("answer").value);
+
+    const correct =
+        normalize(sigah[current].translit);
+
+    const result =
+        document.getElementById("result");
+
+    if(!input){
+
+        result.innerText =
+            "✍️ Жообуңду жазып көр.";
+
+        return;
 
     }
+
+    if(
+        input === correct ||
+        input.includes(correct) ||
+        correct.includes(input)
+    ){
+
+        result.innerText =
+            "✨ Машаллах! Туура жооп!";
+
+    }else{
+
+        result.innerText =
+            "❌ Азырынча туура эмес. Туурасы: "
+            + sigah[current].translit;
+
+    }
+
+}
+
+
+function nextQuestion(){
+
+    current++;
+
+    if(current >= sigah.length){
+        current = 0;
+    }
+
+    showQuestion();
+
+}
+
+
+function speakPractice(){
+
+    speak(sigah[current].arabic);
+
+}
+
+
+/* ================= SCROLL REVEAL ================= */
+
+const observer =
+new IntersectionObserver(
+    entries => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add("show");
+
+            }
+
+        });
+
+    },
+    {
+        threshold:.12
+    }
+);
+
+
+document.querySelectorAll(".reveal")
+.forEach(el => observer.observe(el));
+
+
+/* ================= INITIAL ================= */
+
+showQuestion();
 
 </script>
 
 </body>
 </html>
-```
