@@ -1,0 +1,47 @@
+/* 1. БАРАКЧАНЫН ЖАЛПЫ СТИЛИ */
+body {
+    background-color: #f4f4f9; /* Баракчанын фонунун түсү */
+    font-family: Arial, sans-serif; /* Тексттин шрифти */
+    color: #333333;            /* Негизги тексттин түсү */
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. ТЕКСТТЕР МЕНЕН ИШТӨӨ */
+h1 {
+    color: #2c3e50;         /* Сүйлөм же теманын түсү */
+    text-align: center;     /* Текстти ортого тегиздөө */
+    font-size: 28px;        /* Шрифттин көлөмү */
+}
+
+p {
+    line-height: 1.6;       /* Саптардын ортосундагы аралык */
+    font-size: 16px;
+    padding: 0 20px;
+}
+
+/* 3. БАРАКЧАНЫН ВЛОКТОРУ ЖАНА КОНТЕЙНЕРЛЕРИ */
+.card {
+    background-color: #ffffff; /* Блоктун фону */
+    width: 300px;              /* Туурасы */
+    padding: 20px;             /* Блоктун ички боштугу */
+    margin: 20px auto;         /* Блокту ортого жайгаштыруу */
+    border-radius: 8px;        /* Бурчтарын тегеректөө */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Көлөкө түшүрүү */
+}
+
+/* 4. ТОПЧОЛОР (BUTTONS) ЖАНА АНИМАЦИЯ */
+.btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;           /* Чычканды алып барганда колдун белгиси чыгат */
+    transition: background 0.3s ease; /* Түс өзгөргөндө жумшак өтүү */
+}
+
+/* Курсорду топчого алып баргандагы көрүнүшү */
+.btn:hover {
+    background-color: #2980b9;
+}

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SAMARA ARABIC ACADEMY</title>
+<link rel="stylesheet" href="style.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +23,7 @@
     --muted:#aaa397;
     --glass:rgba(255,255,255,.055);
     --border:rgba(220,184,105,.22);
+    --gold-glow: rgba(216, 179, 106, 0.4);
 }
 
 *{
@@ -256,7 +258,7 @@ nav{
     border:1px solid var(--border);
     background:
         linear-gradient(to bottom,transparent 30%,rgba(0,0,0,.8)),
-        url("https://images.pexels.com/photos/6281986/pexels-photo-6281986.jpeg") center/cover;
+        url("image_0.png") center/cover;
     box-shadow:
         0 40px 100px rgba(0,0,0,.65),
         inset 0 0 80px rgba(0,0,0,.3);
@@ -601,6 +603,7 @@ section{
     max-width:1050px;
     margin:auto;
     padding:70px 50px;
+
     text-align:center;
     border:1px solid var(--border);
     border-radius:35px;
@@ -623,6 +626,100 @@ section{
 .quran p{
     color:var(--muted);
     line-height:1.9;
+}
+
+/* ================= CREATIVE ADO ================= */
+
+.creative-ado{
+    margin-top: 50px;
+    padding: 30px;
+    border-radius: 20px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: pulseGlow 4s infinite alternate;
+}
+
+.creative-ado::before {
+    content: '';
+    position: absolute;
+    inset: -50px;
+    background: radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.1), transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(216, 179, 106, 0.15), transparent 60%);
+    filter: blur(30px);
+    z-index: -1;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 10px var(--gold-glow); }
+    100% { box-shadow: 0 0 40px var(--gold-glow); }
+}
+
+.creative-ado h4 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 28px;
+    color: var(--gold);
+}
+
+.ado-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.ado-input {
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    color: var(--cream);
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.ado-input:focus {
+    border-color: var(--gold2);
+    box-shadow: 0 0 10px var(--gold-glow);
+    outline: none;
+}
+
+.ado-label {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.ado-label::after {
+    content: attr(data-label);
+    position: absolute;
+    top: -12px;
+    left: 10px;
+    background: var(--bg);
+    padding: 0 5px;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+#sarfResult {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.05);
+    background: rgba(0,0,0,0.3);
+    color: var(--muted);
+    font-size: 13px;
+    text-align: left;
+    white-space: pre-wrap; /* Preserve line breaks */
+    display: none; /* Initially hidden */
 }
 
 /* ================= FOOTER ================= */
@@ -684,6 +781,10 @@ footer p{
     .feature-grid,
     .subject-grid{
         grid-template-columns:repeat(2,1fr);
+    }
+
+    .creative-ado .ado-inputs {
+        flex-direction: column;
     }
 
 }
@@ -809,7 +910,7 @@ SAMARA ARABIC ACADEMY
 </h1>
 
 <div class="hero-arabic">
-تَعَلَّمِ الْعَرَبِيَّةَ
+تَعَلَّمِ الْعَرَبِيَّةَ
 </div>
 
 <p>
@@ -916,7 +1017,7 @@ SAMARA ARABIC ACADEMY
 <div class="section-head reveal">
 
 <div class="arabic">
-الصَّرْفُ
+الصَّرْفُ
 </div>
 
 <h2>Сарф — 14 сыга</h2>
@@ -941,6 +1042,19 @@ SAMARA ARABIC ACADEMY
 
 <span>катаба — жазды</span>
 
+</div>
+
+<!-- CREATIVE ADO (Sarf Generator) -->
+<div class="creative-ado reveal">
+    <h4>Өзүңдүн феълди жаз</h4>
+    <p>Төмөнкү талаага арабча феълдин уңгусун жаз (мисалы: фа-ъа-ла). Андан кийин 'Сарф кылуу' баскычын бас.</p>
+    <div class="ado-inputs">
+        <label class="ado-label" data-label="Феъл уңгусу (Арабча)">
+            <input type="text" class="ado-input" id="rootInput" placeholder="Мисалы: فعل" maxlength="5">
+        </label>
+        <button class="btn btn-primary" onclick="generateSarf()">Сарф кылуу ✨</button>
+    </div>
+    <div id="sarfResult"></div>
 </div>
 
 </div>
@@ -1020,7 +1134,7 @@ SAMARA ARABIC ACADEMY
 <div class="section-head reveal">
 
 <div class="arabic">
-عُلُومُ الْعَرَبِيَّةِ
+عُلُومُ الْعَرَبِيَّةِ
 </div>
 
 <h2>Араб тилинин дүйнөсү</h2>
@@ -1039,7 +1153,7 @@ SAMARA ARABIC ACADEMY
 
 <div class="subject-number">01 / SARF</div>
 
-<div class="arabic">الصَّرْفُ</div>
+<div class="arabic">الصَّرْفُ</div>
 
 <h3>Сарф</h3>
 
@@ -1055,7 +1169,7 @@ SAMARA ARABIC ACADEMY
 
 <div class="subject-number">02 / NAHW</div>
 
-<div class="arabic">النَّحْوُ</div>
+<div class="arabic">النَّحْوُ</div>
 
 <h3>Нахв</h3>
 
@@ -1071,7 +1185,7 @@ SAMARA ARABIC ACADEMY
 
 <div class="subject-number">03 / LUGAT</div>
 
-<div class="arabic">اللُّغَةُ</div>
+<div class="arabic">اللُّغَةُ</div>
 
 <h3>Лугат</h3>
 
@@ -1087,7 +1201,7 @@ SAMARA ARABIC ACADEMY
 
 <div class="subject-number">04 / TAJWID</div>
 
-<div class="arabic">التَّجْوِيدُ</div>
+<div class="arabic">التَّجْوِيدُ</div>
 
 <h3>Тажвид</h3>
 
@@ -1125,7 +1239,7 @@ SAMARA ARABIC ACADEMY
 <br>
 
 <div class="hero-arabic">
-رَبِّ زِدْنِي عِلْمًا
+رَبِّ زِدْنِي عِلْمًا
 </div>
 
 <p>
@@ -1215,7 +1329,7 @@ photo:"https://images.pexels.com/photos/8640084/pexels-photo-8640084.jpeg"
 
 {
 n:"06",
-arabic:"هُنَّ كَتَبْنَ",
+arabic:"هُنَّ كَتَبْنَ",
 translit:"хунна катабна",
 meaning:"Алар жазышты",
 person:"Көп аял",
@@ -1269,7 +1383,7 @@ photo:"https://images.pexels.com/photos/8640084/pexels-photo-8640084.jpeg"
 
 {
 n:"12",
-arabic:"أَنْتُنَّ كَتَبْتُنَّ",
+arabic:"أَنْتُنَّ كَتَبْتُنَّ",
 translit:"антунна катабтунна",
 meaning:"Силер жаздыңар",
 person:"Көп аял",
@@ -1405,6 +1519,7 @@ function normalize(text){
         .replace(/[ū]/g,"u")
         .replace(/[ī]/g,"i")
         .replace(/[ъь]/g,"")
+        .replace(/[ыүө]/g, "и") // Simplistic mapping for common user typos
         .replace(/\s+/g," ");
 
 }
@@ -1468,6 +1583,48 @@ function speakPractice(){
 
 }
 
+
+/* ================= CREATIVE ADO: SARF GENERATOR ================= */
+
+function generateSarf() {
+    const root = document.getElementById('rootInput').value.trim();
+    const resultDiv = document.getElementById('sarfResult');
+    
+    if (!root) {
+        resultDiv.innerText = "Феъл уңгусун жаз.";
+        resultDiv.style.display = 'block';
+        return;
+    }
+
+    // simplistic rule for generating Sarf forms (Madi) based on patterns
+    // This is NOT linguistically accurate for all cases, but works for simple demonstration
+    const forms = [
+        { person: "1 эркек", pattern: "فَعَلَ", translit: "фа'ала" },
+        { person: "2 эркек", pattern: "فَعَلَا", translit: "фа'алаа" },
+        { person: "Көп эркек", pattern: "فَعَلُوا", translit: "фа'алуу" },
+        { person: "1 аял", pattern: "فَعَلَتْ", translit: "фа'алат" },
+        { person: "2 аял", pattern: "فَعَلَتَا", translit: "фа'алатаа" },
+        { person: "Көп аял", pattern: "فَعَلْنَ", translit: "фа'ална" },
+        { person: "1 эркекке (салам)", pattern: "فَعَلْتَ", translit: "фа'алта" },
+        { person: "2 адам (салам)", pattern: "فَعَلْتُمَا", translit: "фа'алтумаа" },
+        { person: "Көп эркек (салам)", pattern: "فَعَلْتُمْ", translit: "фа'алтум" },
+        { person: "1 аялга (салам)", pattern: "فَعَلْتِ", translit: "фа'алти" },
+        { person: "2 аял (салам)", pattern: "فَعَلْتُمَا", translit: "фа'алтумаа" },
+        { person: "Көп аял (салам)", pattern: "فَعَلْتُنَّ", translit: "фа'алтунна" },
+        { person: "Мен", pattern: "فَعَلْتُ", translit: "фа'алту" },
+        { person: "Биз", pattern: "فَعَلْنَا", translit: "фа'алнаа" }
+    ];
+
+    let output = "Феълдин 14 сыйгасы:\n\n";
+    let index = 1;
+    forms.forEach(form => {
+        output += `${index.toString().padStart(2, '0')} / ${form.person}: ${form.pattern} -> ${form.translit}\n`;
+        index++;
+    });
+
+    resultDiv.innerText = output;
+    resultDiv.style.display = 'block';
+}
 
 /* ================= SCROLL REVEAL ================= */
 
